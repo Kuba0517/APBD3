@@ -1,22 +1,32 @@
 ﻿using APBD3.Interfaces;
+using APBD3.Load;
 
 namespace APBD3.Containers;
 
-public class LiquidContainer(double loadMass, double height, double ownWeight, double depth, double maxCapacity)
-    : Container(loadMass, height, ownWeight, depth, maxCapacity), IHazardNotifier
+public class LiquidContainer(double height, double ownWeight, double depth, double maxCapacity)
+    : Container(height, ownWeight, depth, maxCapacity), IHazardNotifier
 {
-    public override void Load(double mass)
+    public override void Load(Cargo cargo,double mass)
     {
-        base.Load(mass);
-    }
+        base.Load(cargo,mass);
+        if (cargo.Hazardous)
+        {
+            MaxCapacity *= 0.5;
+        }
+        else
+        {
+            MaxCapacity *= 0.9;
+        }
 
-    public override void Empty()
-    {
-        Console.WriteLine("empty");
+        if (mass > MaxCapacity)
+        {
+            Warn();
+        }
     }
+    
 
     public void Warn()
     {
-        
+        Console.WriteLine("Niebezpieczny sytuacja w kontenerze: " + SerialNumber);
     }
 }

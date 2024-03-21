@@ -1,4 +1,6 @@
-﻿using APBD3.Exception;
+﻿using System.Collections;
+using APBD3.Exception;
+using APBD3.Load;
 
 namespace APBD3.Containers;
 
@@ -12,23 +14,34 @@ public abstract class Container
     public double OwnWeight { get; set; } 
     public double Depth { get; set; } 
     public double MaxCapacity { get; set; }
+    public Cargo ContainerCargo { get; set; }
     public string SerialNumber { get; }
 
-    protected Container(double loadMass, double height, double ownWeight, 
-        double depth, double maxCapacity)
+    protected Container(double height, double ownWeight, double depth, double maxCapacity)
     {
+        Height = height;
+        OwnWeight = ownWeight;
+        Depth = depth;
+        MaxCapacity = maxCapacity;
         SerialNumber = GenerateSerialNumber();
+        LoadMass = 0;
     }
 
 
-    public abstract void Empty();
-
-    public virtual void Load(double mass)
+    public virtual void Empty()
     {
-        if (mass > LoadMass)
+        LoadMass = 0;
+        ContainerCargo = null;
+    }
+
+    public virtual void Load(Cargo cargo,double mass)
+    {
+        if (mass > MaxCapacity)
         {
             throw new OverfillException();
         }
+
+        ContainerCargo = cargo;
     }
 
     private string GenerateSerialNumber()
