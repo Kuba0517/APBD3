@@ -1,30 +1,61 @@
 ﻿using APBD3.Containers;
 using APBD3.Load;
+using APBD3.Vehicles;
 
 public class Program
 {
     public static void Main(string[] args)
     {
-        LiquidContainer lq = new LiquidContainer( 20.2, 20.3, 10.2, 1000);
-        GasContainer gc = new GasContainer(20, 100, 18, 1500, 1024);
-        CoolingContainer cc = new CoolingContainer(20, 100, 18, 1100, 5, CargoType.Dairy);
+        List<ContainerShip> ships = [];
+        List<Container> containers = [];
         
-        Console.WriteLine(lq.SerialNumber);
-        Console.WriteLine(gc.SerialNumber);
-        Console.WriteLine(cc.SerialNumber);
-        
-        cc.Load(new Cargo("Jajka", CargoType.Chemical, 5, false), 1000);
-        
-        gc.Load(new Cargo("Hel", CargoType.Fuel, 10, false), 500);
-        Console.WriteLine(gc.LoadMass);
-        gc.Empty();
-        Console.WriteLine(gc.LoadMass);
-        Console.WriteLine(gc.ContainerCargo.CargoName);
+        while (true)
+        {
+            Console.WriteLine("Lista kontenerowców: ");
+            Console.WriteLine((ships.Count > 0 ? ships : "brak"));
+            Console.WriteLine("Lista kontenerów: " );
+            Console.WriteLine((containers.Count > 0 ? containers : "brak"));
 
-        lq.Load(new Cargo("Etanol", CargoType.Chemical, 6, true), 1000);
+            Console.WriteLine("Możliwe akcje:");
+            Console.WriteLine("1. Dodaj kontenerowiec");
+            Console.WriteLine("2. Usun kontenerowiec");
+            Console.WriteLine("3. Dodaj kontener");
 
-        Console.WriteLine(lq.ToString());
-        Console.WriteLine(gc.ToString());
-        Console.WriteLine(cc.ToString());
+            string? userInput = Console.ReadLine();
+
+            switch (userInput)
+            {
+                case "1":
+                    Console.WriteLine("Podaj maksymalną prędkość: ");
+                    string maxSpeed = Console.ReadLine();
+
+                    Console.WriteLine("Podaj maksymalną ilość konenerów: ");
+                    string maxConCount = Console.ReadLine();
+
+                    Console.WriteLine("Podaj maksymalną masę kontenerów: ");
+                    string maxConWeight = Console.ReadLine();
+                    
+                    ships.Add(new ContainerShip(double.Parse(maxSpeed), int.Parse(maxConCount), double.Parse(maxConWeight)));
+                    break;
+                case "2":
+                    int counter = 0;
+                    foreach (ContainerShip sh in ships)
+                    {
+                        Console.WriteLine(++counter + ". sh");
+                    }
+
+                    Console.WriteLine("Podaj, który kontenerowiec chcesz usunąć: ");
+                    string indexToDelete = Console.ReadLine();
+
+                    ships.Remove(ships[int.Parse(indexToDelete)]);
+                    break;
+                case "3":
+                    
+
+                    break;
+                    
+                
+            }
+        }
     }
 }

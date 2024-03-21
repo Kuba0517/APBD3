@@ -5,7 +5,7 @@ namespace APBD3.Vehicles;
 public class ContainerShip
 {
     private static int _id = 0;
-    public static int Id { get; } = _id++;
+    public int Id { get; } = _id++;
     public List<Container?> Containers { get; set; }
     public double MaxSpeed { get; set; }
     public int MaxContainersCount { get; set; }
