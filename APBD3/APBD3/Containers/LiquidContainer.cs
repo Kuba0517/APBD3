@@ -12,16 +12,13 @@ public class LiquidContainer(double height, double ownWeight, double depth, doub
         if (cargo.Hazardous)
         {
             MaxCapacity *= 0.5;
+            Warn();
         }
         else
         {
             MaxCapacity *= 0.9;
         }
-
-        if (mass > MaxCapacity)
-        {
-            Warn();
-        }
+        
     }
     
 

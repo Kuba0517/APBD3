@@ -42,6 +42,7 @@ public abstract class Container
         }
 
         ContainerCargo = cargo;
+        LoadMass = mass;
     }
 
     private string GenerateSerialNumber()

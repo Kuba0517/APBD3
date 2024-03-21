@@ -8,7 +8,15 @@ public class GasContainer(double height, double ownWeight, double depth, double 
 {
 
     public double Pressure { get; set; } = pressure;
-    
+
+    public override void Load(Cargo cargo, double mass)
+    {
+        base.Load(cargo, mass);
+        if (cargo.Hazardous)
+        {
+            Warn();
+        }
+    }
 
     public override void Empty()
     {

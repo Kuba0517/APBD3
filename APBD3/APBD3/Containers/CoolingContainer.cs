@@ -12,13 +12,18 @@ public class CoolingContainer(double height, double ownWeight, double depth, dou
 
     public override void Load(Cargo cargo, double mass)
     {
-        if (Temperature < cargo.Temperature)
+        if (cargo.Hazardous)
+        {
+            Console.WriteLine("Nie można transportować niebezpiecznych produktów w kontenerze chłodzącym");
+            return;
+        }
+        else if (Temperature < cargo.Temperature)
         {
             Console.WriteLine($"Temperatura w kontenerze: {SerialNumber} jest zbyt niska dla produktu: {cargo.CargoName}");
         }
         else if (!CompatibleCargoType.Equals(cargo.CargoType))
         {
-            Console.WriteLine($"Typ: ${cargo.CargoType} rożni się od typu kontenera: {CompatibleCargoType}");
+            Console.WriteLine($"Typ: {cargo.CargoType} rożni się od typu kontenera: {CompatibleCargoType}");
         }
         else {
             base.Load(cargo, mass);
