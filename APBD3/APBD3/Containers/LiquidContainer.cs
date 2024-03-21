@@ -18,7 +18,12 @@ public class LiquidContainer(double height, double ownWeight, double depth, doub
         {
             MaxCapacity *= 0.9;
         }
-        
+
+        if (mass > MaxCapacity)
+        {
+            Warn();
+        }
+
     }
     
 
