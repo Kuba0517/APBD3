@@ -50,7 +50,11 @@ public abstract class Container
         return "KON-" + GetType().Name[0] + "-" + _id;
     }
 
-
-
-
+    public virtual string ToString()
+    {
+        return $"container serial number: {SerialNumber}, load mass: {LoadMass}, height: {Height}, " +
+               $"container's own weight: {OwnWeight}, depth: {Depth}, max capacity: {MaxCapacity}, " +
+               $"container's cargo: {ContainerCargo}, ";
+    }
+    
 }

@@ -25,6 +25,11 @@ public class GasContainer(double height, double ownWeight, double depth, double 
 
     public void Warn()
     {
-       Console.WriteLine("Niebezpieczna sytuacja w kontenerze:  " + SerialNumber);
+       Console.WriteLine("Dangerous situation in container:  " + SerialNumber);
+    }
+
+    public override string ToString()
+    {
+        return base.ToString() + $", pressure: {Pressure}";
     }
 }

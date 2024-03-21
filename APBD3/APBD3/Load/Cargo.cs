@@ -6,6 +6,11 @@ public class Cargo(string cargoName,CargoType cargoType,double temperature, bool
     public CargoType CargoType { get; } = cargoType;
     public double Temperature { get; } = temperature;
     public bool Hazardous { get; } = hazardous;
+
+    public override string ToString()
+    {
+        return $"{CargoName}, cargo type: {CargoType}, cargo temperature: {Temperature}, cargo hazard: {hazardous}";
+    }
 }
 
 public enum CargoType

@@ -30,9 +30,8 @@ public class CoolingContainer(double height, double ownWeight, double depth, dou
         }
     }
 
-    public override void Empty()
+    public override string ToString()
     {
-        
-        
+        return base.ToString() + $", temperature: {Temperature}, compatible cargo type: {CompatibleCargoType}";
     }
 }

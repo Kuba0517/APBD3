@@ -29,6 +29,7 @@ public class LiquidContainer(double height, double ownWeight, double depth, doub
 
     public void Warn()
     {
-        Console.WriteLine("Niebezpieczny sytuacja w kontenerze: " + SerialNumber);
+        Console.WriteLine("Dangerous situation in container: " + SerialNumber);
     }
+    
 }

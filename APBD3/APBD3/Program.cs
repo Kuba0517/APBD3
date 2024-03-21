@@ -22,5 +22,9 @@ public class Program
         Console.WriteLine(gc.ContainerCargo.CargoName);
 
         lq.Load(new Cargo("Etanol", CargoType.Chemical, 6, true), 1000);
+
+        Console.WriteLine(lq.ToString());
+        Console.WriteLine(gc.ToString());
+        Console.WriteLine(cc.ToString());
     }
 }
